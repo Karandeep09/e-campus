@@ -1,0 +1,63 @@
+.login-header{
+    background: #6f42c1;
+    color: #fff;
+    height: 50px;
+    text-align: center;
+}
+.login-header p{
+    font-weight: bold;
+}
+.container{
+    max-width: 600px;
+}
+.auth h3 {
+    color: #ffc107;
+}
+.login, .signup {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    justify-content: center;
+    margin: 0 auto;
+    border: 1px solid lightgray;
+    padding: 50px;
+    padding-bottom: 20px;
+}
+.hidden {
+    display: none;
+}
+.login label, .signup label {
+    padding: 5px 0;
+}
+.auth button {
+    max-width: 100px;
+    border: 0;
+    border-radius: 25px;
+    color: #fff;
+    background: #6f42c1;
+    padding: 4px;
+    margin-top: 10px;
+}
+.auth img {
+    max-width: 400px;
+    text-align: center;
+    margin-left: 80px;
+    padding: 25px;
+    margin-top: 10px;
+}
+.switch-btn, .switch-btn-text {
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+}
+.switch-btn {
+    margin-top: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.center{
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+}
