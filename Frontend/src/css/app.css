@@ -1,0 +1,12 @@
+@import 'navbar.css';
+@import 'login.css';
+
+html{
+    font-size: 20px;
+    background: rgb(250, 249, 240);
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik';
+}
