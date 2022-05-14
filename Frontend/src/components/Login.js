@@ -14,7 +14,7 @@ const Login = () => {
         }
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         };
         fetch('http://192.168.186.145:3000/users/login', requestOptions)

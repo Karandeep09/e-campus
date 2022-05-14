@@ -1,0 +1,52 @@
+.blog{
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid lightgrey;
+    padding: 20px;
+    margin-top: 25px;
+    background: #fff;
+}
+.blog-header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+.blog-profile-name{
+    margin-top: 15px; 
+    margin-left: 10px;
+    cursor: pointer;
+}
+.blog-tags{
+    display: flex;
+    color: #ffc107;
+}
+.blog-tags p{
+    margin-right: 8px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+.blog-footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid lightgrey;
+}
+.blog-footer div{
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.blog-footer div:hover{
+    cursor: pointer;
+    color: #ffc107;
+
+}
+.blog-likes, .blog-comment{
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+}
+.blog-likes p, .blog-comment p{
+    margin: 0;
+    padding: 0;
+}

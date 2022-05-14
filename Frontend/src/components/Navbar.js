@@ -1,20 +1,22 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
-    let url = "";
     return (
         <>
             <div id="menu" className="nav">
                 <div className="nav-section">
-                    <ul><li><a href={url}>Logo</a></li></ul>
-                </div>
-                <div className="nav-section">
                     <ul>
-                        <li><a href="{url}">Home</a></li>
-                        <li><a href="{url}">About</a></li>
-                        <li><a href="{url}">Blogs</a></li>
-                        <li><a href="{url}">Profile</a></li>
+                        <li><Link to="/">E-Campus</Link></li>
                     </ul>
                 </div>
+                <nav className="nav-section">
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/bloglist">Blogs</Link></li>
+                        <li><Link to="/login">Login</Link></li>
+                    </ul>
+                </nav>
             </div>
         </>
     );
