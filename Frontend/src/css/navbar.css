@@ -9,6 +9,9 @@
     text-decoration: none;
     color: #fff;
 }
+.nav a:hover{
+    color: #ffc107;
+}
 .nav-section ul{
     list-style-type: none;
 }
