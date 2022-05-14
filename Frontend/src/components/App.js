@@ -1,13 +1,24 @@
 import React from 'react';
 import '../css/app.css';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+
+import About from './About';
+import BlogList from './BlogList';
 import Login from './Login';
-// import Navbar from './Navbar';
+import Navbar from './Navbar';
 
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
-      <Login />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={ <BlogList /> }/>
+          <Route path="/bloglist" element={ <BlogList /> } />
+          <Route path="/about" element={ <About /> } />
+          <Route path="/login" element={ <Login /> } />
+        </Routes>
+      </Router>
     </>
   );
 }
