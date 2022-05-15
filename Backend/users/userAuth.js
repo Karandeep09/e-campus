@@ -21,7 +21,7 @@ router.post('/post', auth, async (req,res)=>{
         username : req.user.user_id
     };
     const insert = "INSERT INTO posts SET ?";
-    await db.query(insert, [data, req.user.user_id], (erro, resu)=>{
+    await db.query(insert, [data], (erro, resu)=>{
         if(erro) throw erro;
         console.log(resu);
         res.sendStatus(201);
