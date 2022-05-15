@@ -60,6 +60,7 @@ router.post("/login", async (req, res)=>{
                                "sshhh!",
                                {expiresIn : "1d"});
                 resu[0].token = token;
+                delete resu[0].pwd;
                 res.json(resu[0]);
             }
             else{
