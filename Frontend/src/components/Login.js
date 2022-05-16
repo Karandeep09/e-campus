@@ -46,9 +46,9 @@ const Login = () => {
 
     return (
         <>
-        <div className='login-header'>
+        {/* <div className='login-header'>
             <p>E-Campus</p>
-        </div>
+        </div> */}
         <div className="container auth my-4">
 
         <form className="login switch" id="sec-0" onSubmit={handleSubmitLogin}>

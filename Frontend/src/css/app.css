@@ -2,6 +2,7 @@
 @import 'login.css';
 @import 'blog.css';
 @import 'about.css';
+@import 'addblog.css';
 
 html{
     background: rgb(250, 249, 240);
@@ -11,4 +12,8 @@ body{
     padding: 0;
     font-family: 'Rubik';
     background: rgb(250, 249, 240);
+}
+:root{
+    --bgcolor: #6f42c1;
+    --textcolor: #ffc107;
 }
