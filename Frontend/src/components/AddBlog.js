@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import ReactQuill from 'react-quill';
+// import { useState } from 'react';
+// import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Editor from './Editor';
 import MultipleSelectDropdown from './MultipleSelectDropdown';
 
 const AddBlog = () => {
-    const [value, setValue] = useState('');
+    // const [value, setValue] = useState('');
     return (
         <>
             <div className='add-blog'>
@@ -18,8 +18,8 @@ const AddBlog = () => {
                 </div>
                 <div className='add-blog-content'>
                     <h4>Add Content</h4>
-                    <ReactQuill className='editor' theme="snow" value={value} onChange={setValue}/>
-                    {/* <Editor className='editor' /> */}
+                    {/* <ReactQuill className='editor' theme="snow" value={value} onChange={setValue}/> */}
+                    <Editor />
                 </div>
                 <div className='add-blog-tags'>
                     <h4>Add Tags</h4>

@@ -3,6 +3,15 @@ import ReactQuill from "react-quill";
 
 // const toolbarOptions = ["bold"];
 
+function imageHandler() {
+  var range = this.quill.getSelection();
+  var value = prompt('please copy paste the image url here.');
+  if(value){
+      this.quill.insertEmbed(range.index, 'image', value);
+      // this.quill.insertText("♥");
+  }
+}
+
 class Editor extends Component {
   constructor(props) {
     super(props);
@@ -12,14 +21,19 @@ class Editor extends Component {
   }
 
   modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image"]
-    ]
+    toolbar: {
+      container: [
+                  [{ header: [1, 2, false] }],
+                  ["bold", "italic", "underline", "strike", "blockquote"],
+                  [{ list: "ordered" }, { list: "bullet" }],
+                  ["link", "image"],
+                 ],
+                 handlers:{
+                   image : imageHandler
+                 }
+      }
   };
-
+   
   formats = [
     "header",
     "bold",
