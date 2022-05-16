@@ -1,0 +1,36 @@
+.add-blog{
+    max-width: 800px;
+    margin: 0 auto;
+}
+.add-blog h3{
+    text-align: center;
+    color: var(--bgcolor);
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+.add-blog h4{
+    text-align: center;
+    color: var(--textcolor);
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+.add-blog-heading{
+    text-align: center;
+}
+.add-blog-heading input{
+    width: 800px;
+    padding: 8px;
+}
+.editor{
+    background: #fff;
+    min-height: 200px;
+}
+.add-blog-submit{
+    
+}
+.tags-select{
+    background: #fff;
+    margin: 0 auto;
+    text-align: center;
+    width: 800px;
+}
