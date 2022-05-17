@@ -11,11 +11,11 @@ const Navbar = () => {
                 </div>
                 <nav className="nav-section">
                     <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/bloglist">Blogs</Link></li>
-                        <li><Link to="/addblog">Add-Blog</Link></li>
-                        <li><Link to="/login">Login</Link></li>
+                    <li className='navBarLink'><Link to="/">Home</Link></li>
+                        <li className='navBarLink'><Link to="/about">About</Link></li>
+                        <li className='navBarLink'><Link to="/bloglist">Blogs</Link></li>
+                        <li className='navBarLink'><Link to="/addblog">Add-Blog</Link></li>
+                        <li className='navBarLink'><Link to="/login">Login</Link></li>
                     </ul>
                 </nav>
             </div>

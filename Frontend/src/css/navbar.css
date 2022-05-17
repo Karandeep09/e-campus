@@ -19,6 +19,9 @@
     display: inline-block;
     width: 80px;
 }
+.navBarLink {
+    margin-left: 30px;
+  }
 
 @media only screen and (max-width:800)  {
     
