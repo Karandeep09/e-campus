@@ -16,7 +16,7 @@ class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "<div contenteditable='false'>Hector oscar Pacheco</div>"
+      text: "<div contenteditable='false'>Your text here</div>"
     };
   }
 
