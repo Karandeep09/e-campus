@@ -1,11 +1,11 @@
 import React from 'react';
-
+import  { useNavigate } from 'react-router-dom';
 const Login = () => {
     function handleSwitchBtn(){
         document.querySelector('#sec-0').classList.toggle("hidden");
         document.querySelector('#sec-1').classList.toggle("hidden");
     }
-
+    const navigate = useNavigate();
     function handleSubmitLogin(e){
         e.preventDefault();
         const data = {
@@ -17,9 +17,15 @@ const Login = () => {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         };
-        fetch('http://192.168.186.145:3000/users/login', requestOptions)
+        fetch('http://127.0.0.1:4000/users/login', requestOptions)
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => {
+                console.log(data);
+                if(data.token){
+                    localStorage.setItem("user", JSON.stringify(data));
+                    navigate("/bloglist");
+                }
+            });
 
             document.getElementById('sec-0').reset();
     }
@@ -37,7 +43,7 @@ const Login = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         };
-        fetch('http://192.168.186.145:3000/users/createUser', requestOptions)
+        fetch('http://127.0.0.1:4000/users/createUser', requestOptions)
             .then(response => response.json())
             .then(data => console.log(data));
 
