@@ -7,6 +7,7 @@ import BlogList from './BlogList';
 import Login from './Login';
 import Navbar from './Navbar';
 import AddBlog from './AddBlog';
+import Error404 from './Error404';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/about" element={ <About /> } />
           <Route path="/addblog" element={ <AddBlog /> } />
           <Route path="/login" element={ <Login /> } />
+          <Route path="*" element={ <Error404 /> } />
         </Routes>
       </Router>
     </>

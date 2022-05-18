@@ -4,6 +4,9 @@
     background: #6f42c1;
     padding: 1%;
     color: #ffc107;
+    /* position: fixed;
+    top: 0;
+    width: 100%; */
 }
 .nav a{
     text-decoration: none;
@@ -20,7 +23,7 @@
     width: 80px;
 }
 .navBarLink {
-    margin-left: 30px;
+    margin-left: 20px;
   }
 
 @media only screen and (max-width:800)  {
