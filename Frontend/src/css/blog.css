@@ -63,24 +63,22 @@
     bottom: 1rem;
     width: 40px;
     height: 40px;
-    color: blue;
+    color: var(--bgcolor);
     align-self: flex-end;
     float: right;
     border-radius: 50%;
+    cursor: pointer;
   }
   
   @keyframes glowing {
       0% {
-        background-color: #0af0f0;
-        box-shadow: 0 0 5px #0af0f0;
+        box-shadow: 0 0 5px var(--bgcolor);
       }
       50% {
-        background-color: #0af0f0;
-        box-shadow: 0 0 20px #0af0f0;
+        box-shadow: 0 0 20px var(--bgcolor);
       }
       100% {
-        background-color: #0af0f0;
-        box-shadow: 0 0 5px #0af0f0;
+        box-shadow: 0 0 5px var(--bgcolor);
       }
     }
     .post-btn {

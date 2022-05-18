@@ -17,3 +17,11 @@ body{
     --bgcolor: #6f42c1;
     --textcolor: #ffc107;
 }
+.errorpage{
+    text-align: center;
+    margin-top: 50px;
+}
+.errorpage img{
+    width: 500px;
+    margin-bottom: 50px;
+}

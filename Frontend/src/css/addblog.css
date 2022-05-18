@@ -9,13 +9,9 @@
     margin-bottom: 30px;
 }
 .add-blog h4{
-    text-align: center;
     color: var(--textcolor);
     margin-top: 25px;
     margin-bottom: 30px;
-}
-.add-blog-heading{
-    text-align: center;
 }
 .add-blog-heading input{
     width: 800px;
@@ -23,14 +19,45 @@
 }
 .editor{
     background: #fff;
-    min-height: 200px;
-}
-.add-blog-submit{
-    
 }
 .tags-select{
     background: #fff;
     margin: 0 auto;
     text-align: center;
     width: 800px;
+}
+.ql-editor, .ql-toolbar{
+    background: #fff;
+}
+.ql-editor{
+    min-height: 200px;
+}
+
+div.msl{
+    background: #fff;
+}
+div.preview-values{
+    background: #fff;
+    width: 800px;
+    border: 1px solid lightgrey;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.add-blog-submit{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+.add-blog-submit button{
+    background: var(--bgcolor);
+    color: #fff;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.add-blog-submit button:hover{
+    background: var(--textcolor);
 }

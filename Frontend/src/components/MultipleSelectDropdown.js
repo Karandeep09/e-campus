@@ -4,22 +4,22 @@ import  'react-multiple-select-dropdown-lite/dist/index.css'
 
 const MultipleSelectDropdown = () => {
 
-  const [value, setvalue] = useState('')
+  const [value, setvalue] = useState('');
 
   const  handleOnchange  =  val  => {
     setvalue(val)
   }
 
   const  options  = [
-    { label:  'Option 1', value:  'option_1'  },
-    { label:  'Option 2', value:  'option_2'  },
-    { label:  'Option 3', value:  'option_3'  },
-    { label:  'Option 4', value:  'option_4'  },
+    { label:  'KNIT', value:  'KNIT'  },
+    { label:  'Interview', value:  'Interview'  },
+    { label:  'Exams', value:  'Exams'  },
+    { label:  'IT', value:  'IT'  },
   ]
 
   return(
     <div className="app">
-      <div  className="preview-values">
+      <div  className="preview-values" id='blog-tags'>
         {value}
       </div>
 
@@ -33,3 +33,5 @@ export default MultipleSelectDropdown;
 
 // npm i react-multiple-select-dropdown-lite
 // First, to install run this
+
+// document.querySelector('.ql-editor').innerHTML;    blog content
