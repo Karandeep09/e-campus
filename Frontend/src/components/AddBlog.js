@@ -3,7 +3,7 @@
 import 'react-quill/dist/quill.snow.css';
 import Editor from './Editor';
 import MultipleSelectDropdown from './MultipleSelectDropdown';
-
+import authHeader from '../sevices/authHeader.service';
 const AddBlog = () => {
     // const [value, setValue] = useState('');
     function handleSubmit(){
@@ -15,7 +15,23 @@ const AddBlog = () => {
         for(let i=0; i<tags_array.length; i++)
             arr.push(tags_array.slice(i, i + 1));
         console.log(heading, content, arr);
-    }
+        const blogdata = {
+            title : heading,
+            content : content,
+            tags : arr
+        };
+        const requestOptions = {
+            method: 'POST',
+            headers: authHeader(),
+            body: JSON.stringify(blogdata)
+        };
+        console.log(requestOptions);
+        fetch('http://127.0.0.1:4000/auth/post', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+}
 
     return (
         <>

@@ -14,6 +14,7 @@ router.get('/welcome', auth, (req, res)=>{
 
 router.post('/post', auth, async (req,res)=>{
     let datetime = moment().format().slice(0, 19).replace('T', ' ');;
+    console.log(req.body);
     let data = {
         title: req.body.title,
         content : req.body.content,
