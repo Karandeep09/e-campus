@@ -29,7 +29,7 @@ router.post('/post', auth, async (req,res)=>{
         await db.query("SELECT LAST_INSERT_ID()", async(erro, resu)=>{
             if(erro) throw erro; 
             
-            let arr = JSON.parse(req.body.tags);
+            let arr = req.body.tags;
             let pid = resu[0]["LAST_INSERT_ID()"];
             arr.forEach((e)=>{
                 e.push(pid);
