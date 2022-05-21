@@ -29,7 +29,7 @@ router.post('/post', auth, async (req,res)=>{
         await db.query("SELECT LAST_INSERT_ID()", async(erro, resu)=>{
             if(erro) throw erro; 
             
-            let arr = req.body.tags;
+            let arr = req.body.tags; // array of array
             let pid = resu[0]["LAST_INSERT_ID()"];
             arr.forEach((e)=>{
                 e.push(pid);
@@ -38,7 +38,7 @@ router.post('/post', auth, async (req,res)=>{
             await db.query("INSERT INTO tags (tagname,post_id) VALUES ?", [arr], (erro, resu)=>{
                 if(erro) throw erro;
                 console.log(resu);
-                res.sendStatus(201);
+                res.status(201).send("Blog Published !!");
             });
         });
     });

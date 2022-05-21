@@ -30,13 +30,13 @@ router.post("/createUser", async (req, res)=>{
         console.log(resu);
         if(resu.length != 0){
             console.log("User already exists");
-            res.sendStatus(409);
+            res.status(409).send("User already exists");
         }
         else{
             await db.query(insert, userdata, (erro, resu)=>{
                 if(erro) throw erro;
                 console.log(resu);
-                res.sendStatus(201);
+                res.status(201).send("User Created");
             });
         }
     });
@@ -52,7 +52,7 @@ router.post("/login", async (req, res)=>{
     await db.query(search, [user], async (err, resu)=>{
         if(err) throw err;
         if(resu.length == 0){
-            res.sendStatus(403);
+             res.status(403).send("No such user");
         }
         else{
             if(await bcrypt.compare(password, resu[0].pwd)){
@@ -64,7 +64,7 @@ router.post("/login", async (req, res)=>{
                 res.json(resu[0]);
             }
             else{
-                res.sendStatus(400);
+                 res.status(400).send("Incorrect Password");
             }
         }
 
