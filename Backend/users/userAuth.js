@@ -19,7 +19,8 @@ router.post('/post', auth, async (req,res)=>{
         title: req.body.title,
         content : req.body.content,
         _date : datetime,
-        username : req.user.user_id
+        username : req.user.user_id,
+        tags : JSON.stringify(req.body.tags)
     };
     
     const insert = "INSERT INTO posts SET ?";
