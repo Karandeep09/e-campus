@@ -6,6 +6,12 @@
     margin-top: 25px;
     background: #fff;
 }
+.paginator{
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 25px;
+    background: #fff;
+}
 .blog-header{
     display: flex;
     align-items: center;
