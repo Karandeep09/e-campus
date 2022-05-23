@@ -4,8 +4,22 @@ import 'react-quill/dist/quill.snow.css';
 import Editor from './Editor';
 import MultipleSelectDropdown from './MultipleSelectDropdown';
 import authHeader from '../sevices/authHeader.service';
+import IsLogged from '../sevices/IsLoggedIn.service';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
 const AddBlog = () => {
     // const [value, setValue] = useState('');
+
+    let navigate = useNavigate();
+    useEffect(() => {
+        if(!IsLogged()){
+            console.log("abc");
+            navigate("/login");
+        }
+        else console.log("def");
+    })
+
     function handleSubmit(){
         const heading = document.querySelector('#blog-heading').value;
         const content = document.querySelector('.ql-editor').innerHTML;
@@ -20,6 +34,7 @@ const AddBlog = () => {
             content : content,
             tags : arr
         };
+
         const requestOptions = {
             method: 'POST',
             headers: authHeader(),
@@ -31,7 +46,7 @@ const AddBlog = () => {
             .then(data => {
                 console.log(data);
             });
-}
+    }
 
     return (
         <>

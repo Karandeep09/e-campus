@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import IsLogged from '../sevices/IsLoggedIn.service';
 
 const Navbar = () => {
+    const [isLogged, setIsLogged] = useState(false);
+    useEffect(() => {
+        if(IsLogged())
+            setIsLogged(true);
+    }, []);
     return (
         <>
             <div id="menu" className="nav">
@@ -11,11 +18,13 @@ const Navbar = () => {
                 </div>
                 <nav className="nav-section">
                     <ul>
-                    <li className='navBarLink'><Link to="/">Home</Link></li>
-                        <li className='navBarLink'><Link to="/about">About</Link></li>
-                        <li className='navBarLink'><Link to="/bloglist">Blogs</Link></li>
-                        <li className='navBarLink'><Link to="/addblog">Add-Blog</Link></li>
-                        <li className='navBarLink'><Link to="/login">Login</Link></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/bloglist">Blogs</Link></li>
+                        <li><Link to="/addblog">Add-Blog</Link></li>
+                        {!isLogged ? <li><Link to="/login">Login</Link></li> 
+                                    : <> <li><Link to="/profile">Profile</Link></li>
+                                        <li><Link to="/">Sign-out</Link></li> </> }
                     </ul>
                 </nav>
             </div>

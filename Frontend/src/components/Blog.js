@@ -1,4 +1,4 @@
-import { BiLike, BiComment } from "react-icons/bi";
+import { BiLike, BiComment, BiEdit, BiTrash } from "react-icons/bi";
 
 const Blog = ({ posts }) => {
     return (
