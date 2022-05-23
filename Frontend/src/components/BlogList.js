@@ -1,23 +1,15 @@
+import React, { useState, useEffect } from 'react';
 import Blog from "./Blog";
-import {AiOutlinePlusCircle} from 'react-icons/ai';
-import {useNavigate} from 'react-router-dom';
-import { useContext } from "react";
-import { BlogContext } from "./App";
-import { useState, useEffect } from "react";
-
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-
+import {AiOutlinePlusCircle} from 'react-icons/ai';
+import {useNavigate} from 'react-router-dom';
 const BlogList = () => {
     const navigate = useNavigate();
     function RenderEditor(){
         navigate("/addblog");
     }
-
-    const blogs = useContext(BlogContext);
-    // console.log(blogs['blogs'].forEach(blog => console.log(blog)))
-
-    const [posts, setPosts] = useState(blogs['blogs']);
+    const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
@@ -32,23 +24,17 @@ const BlogList = () => {
         fetchPosts();
       }, []);
 
-
-    //Get current posts
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    const totalpages = Math.ceil(posts.length / postsPerPage);
-    
-    //Change Page
-    const paginate = (event) => setCurrentPage(event.selected+1);
-    
+            // Get current posts
+        const indexOfLastPost = currentPage * postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - postsPerPage;
+        const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+        const totalpages = Math.ceil(posts.length / postsPerPage);
+            // Change page
+        const paginate = event => setCurrentPage(event.selected+1);
 
     return (
-        <div className="blog-container">
-            {currentPosts.forEach(post => {
-                <Blog post={post} />
-            })}
-            
+        <div className='blog-container'>
+            <Blog posts={currentPosts} />
             <div className='paginator'>
             <ReactPaginate 
                onPageChange={paginate}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import hljs from 'highlight.js';
+import 'highlight.js/styles/intellij-light.css';
 import ReactQuill from "react-quill";
-
-// const toolbarOptions = ["bold"];
 
 function imageHandler() {
   var range = this.quill.getSelection();
@@ -11,7 +11,6 @@ function imageHandler() {
       // this.quill.insertText("♥");
   }
 }
-
 class Editor extends Component {
   constructor(props) {
     super(props);
@@ -21,12 +20,16 @@ class Editor extends Component {
   }
 
   modules = {
+    syntax: {
+      highlight: text => hljs.highlightAuto(text).value,
+    },   
     toolbar: {
+
       container: [
                   [{ header: [1, 2, false] }],
                   ["bold", "italic", "underline", "strike", "blockquote"],
                   [{ list: "ordered" }, { list: "bullet" }],
-                  ["link", "image"],
+                  ["link", "image", "code-block"],
                  ],
                  handlers:{
                    image : imageHandler
@@ -45,7 +48,8 @@ class Editor extends Component {
     "bullet",
     "indent",
     "link",
-    "image"
+    "image",
+    "code-block"
   ];
   handleProcedureContentChange = (content, delta, source, editor) => {
     //let has_attribues = delta.ops[1].attributes || "";
