@@ -4,9 +4,9 @@
     background: #6f42c1;
     padding: 1%;
     color: #ffc107;
-    /* position: fixed;
+    position: sticky;
     top: 0;
-    width: 100%; */
+    width: 100%;
 }
 .nav a{
     text-decoration: none;
@@ -22,9 +22,9 @@
     display: inline-block;
     width: 80px;
 }
-.navBarLink {
+/* .navBarLink {
     margin-left: 20px;
-  }
+  } */
 
 @media only screen and (max-width:800)  {
     

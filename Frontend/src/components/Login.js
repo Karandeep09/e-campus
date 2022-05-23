@@ -1,16 +1,17 @@
 import React from 'react';
 import  { useNavigate } from 'react-router-dom';
+
 const Login = () => {
     function handleSwitchBtn(){
         document.querySelector('#sec-0').classList.toggle("hidden");
         document.querySelector('#sec-1').classList.toggle("hidden");
     }
     const navigate = useNavigate();
-    function handleSubmitLogin(e){
-        e.preventDefault();
+
+    function logincall(username, password){
         const data = {
-            username : e.target[0].value,
-            password : e.target[1].value
+            username : username,
+            password : password
         }
         const requestOptions = {
             method: 'POST',
@@ -26,11 +27,15 @@ const Login = () => {
                     navigate("/bloglist");
                 }
             });
-
-            document.getElementById('sec-0').reset();
     }
 
-    function handleSubmitSignup(e){
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+        logincall(e.target[0].value, e.target[1].value);
+        document.getElementById('sec-0').reset();
+    }
+
+    const handleSubmitSignup = (e) => {
         e.preventDefault();
         const data = {
             email : e.target[0].value,
@@ -44,17 +49,18 @@ const Login = () => {
             body: JSON.stringify(data)
         };
         fetch('http://127.0.0.1:4000/users/createUser', requestOptions)
-            .then(response => response.json())
-            .then(data => console.log(data));
+            .then(response => {
+                document.getElementById('sec-1').reset();
+                logincall(data.username, data.password);
+                response.json()
+            }).then(data => console.log(data));
 
         document.getElementById('sec-1').reset();
+        // logincall(data.username, data.password);
     }
 
     return (
         <>
-        {/* <div className='login-header'>
-            <p>E-Campus</p>
-        </div> */}
         <div className="container auth my-4">
 
         <form className="login switch" id="sec-0" onSubmit={handleSubmitLogin}>
@@ -89,7 +95,7 @@ const Login = () => {
             </label>
             <button type="submit">Signup</button>
 
-            <p className="switch-btn-text text-center">Already Registered.</p>
+            <p className="switch-btn-text text-center">Already Registered?</p>
             <p className="switch-btn text-center" onClick={() => handleSwitchBtn()}>Sign In</p>
         </form>
         <footer>
