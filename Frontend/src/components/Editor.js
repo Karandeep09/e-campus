@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import hljs from 'highlight.js';
-import 'highlight.js/styles/vs.css';
+import 'highlight.js/styles/intellij-light.css';
 import ReactQuill from "react-quill";
 
 function imageHandler() {
