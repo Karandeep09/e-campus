@@ -34,7 +34,7 @@ const BlogList = () => {
 
     return (
         <div className='blog-container'>
-            <Blog posts={currentPosts} loading={loading} />
+            <Blog posts={currentPosts} />
             <div className='paginator'>
             <ReactPaginate 
                onPageChange={paginate}

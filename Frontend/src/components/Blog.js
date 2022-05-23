@@ -1,6 +1,6 @@
 import { BiLike, BiComment } from "react-icons/bi";
 
-const Blog = ({ posts, loading }) => {
+const Blog = ({ posts }) => {
     return (
         <>
           {posts.map(post => (
