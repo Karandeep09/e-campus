@@ -4,6 +4,7 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
 import {useNavigate} from 'react-router-dom';
+
 const BlogList = () => {
     const navigate = useNavigate();
     function RenderEditor(){

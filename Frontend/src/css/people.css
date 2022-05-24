@@ -1,0 +1,49 @@
+.people-comp{
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 50px;
+    margin-top: 40px;
+}
+.people-comp h5{
+    font-weight: bolder;
+    text-align: center;
+}
+.search-people{
+    text-align: center;
+}
+.search-people input{
+    background: rgb(250, 249, 240);
+    width: 70%;
+    padding: 10px;
+    border: 1px solid var(--textcolor);
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.search-profiles{
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.blog-header-left{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.search-profiles-body{
+    display: flex;
+    justify-content: space-between;
+}
+.blog-header-right{
+    margin-right: 25px;
+    margin-top: 20px;
+}
+.blog-header-right p{
+    background: var(--bgcolor);
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
