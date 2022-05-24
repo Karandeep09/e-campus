@@ -44,4 +44,22 @@ router.post('/post', auth, async (req,res)=>{
         });
     });
 });
+
+ router.post('/delete',auth, async (req, res)=>{
+     const post_id = req.body.id;
+     const user_id = req.user.user_id;
+     let sql = "DELETE tags FROM posts JOIN tags ON posts.post_id = tags.post_id WHERE username = ? AND tags.post_id = ?"
+     console.log(user_id, post_id);
+     await db.query(sql,[user_id,post_id], async (erro, resu)=>{
+         if(erro) throw erro;
+         console.log(resu);
+             await db.query("DELETE from posts WHERE post_id =?",[post_id],(erro, resu)=>{
+                 if(erro) throw erro;
+                 console.log(resu);
+                 if(resu.affectedRows == 1)
+                  res.status(200).send("Blog Deleted");
+                 else res.status(200).send("This postid doesn't exist");
+             });
+    });
+ });
 module.exports = router;
