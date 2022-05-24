@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/app.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
@@ -8,9 +8,10 @@ import Login from './Login';
 import Navbar from './Navbar';
 import AddBlog from './AddBlog';
 import Error404 from './Error404';
-import SidebarTags from './SidebarTags';
 import Signout from './Signout';
 import People from './People';
+import Profile from './Profile';
+import IsLogged from '../sevices/IsLoggedIn.service';
 
 export const BlogContext = React.createContext();
 
@@ -21,13 +22,17 @@ function App() {
     blogs
   };
 
+  const [isLogged, setIsLogged] = useState(false);
+    useEffect(() => {
+        if(IsLogged())
+            setIsLogged(true);
+    },[isLogged]);
+
   return (
     <>
     <BlogContext.Provider value={blogContextValue} >
       <Router>
-        <Navbar />
-        <div className='home-layout'>
-          {/* <SidebarTags /> */}
+        <Navbar logged={isLogged} />
           <Routes>
             <Route exact path="/" element={ <BlogList /> }/>
             <Route path="/bloglist" element={ <BlogList /> } />
@@ -36,10 +41,9 @@ function App() {
             <Route path="/login" element={ <Login /> } />
             <Route path="/signout" element={ <Signout />} />
             <Route path="/people" element={ <People /> } />
+            <Route path="/profile" element={ <Profile /> } />
             <Route path="*" element={ <Error404 /> } />
           </Routes>
-          {/* <SidebarTags /> */}
-        </div>
       </Router>
     </BlogContext.Provider>
     </>

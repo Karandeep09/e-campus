@@ -3,6 +3,8 @@
 @import 'blog.css';
 @import 'about.css';
 @import 'addblog.css';
+@import 'profile.css';
+@import 'people.css';
 
 html{
     background: rgb(250, 249, 240);
@@ -25,6 +27,6 @@ body{
     width: 500px;
     margin-bottom: 50px;
 }
-/* .home-layout{
-    display: flex;
-} */
+.logo{
+    color: var(--textcolor);
+}

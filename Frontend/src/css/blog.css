@@ -45,6 +45,10 @@
     width: 20px;
 }
 
+.blog-heading{
+    color: var(--bgcolor);
+    text-decoration: underline;
+}
 
 .blog-tags{
     display: flex;
@@ -120,4 +124,8 @@
     margin: 0 auto;
     margin-top: 25px;
     background: #fff;
+}
+
+.liked{
+    color: blue;
 }

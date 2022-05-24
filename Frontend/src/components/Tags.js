@@ -16,7 +16,7 @@ const Tags = ( {tags} ) => {
         
     return (
         <>
-           {tagElements}   
+           {tagElements}
         </>
     )
 }
