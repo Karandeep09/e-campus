@@ -1,0 +1,22 @@
+.profile{
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 50px;
+    margin-top: 40px;
+    font-size: 15px;
+}
+.profile-top{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 60%;
+    margin-right: 40px;
+}
+.profile-bio p{
+    max-width: 500px;
+}
