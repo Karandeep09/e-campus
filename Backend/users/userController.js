@@ -72,7 +72,7 @@ router.post("/login", async (req, res)=>{
 });
 
  router.get("/posts", async (req, res)=>{
-     await db.query("SELECT * FROM posts", (err, resp) =>{
+     await db.query("SELECT * FROM posts JOIN users ON posts.username = users.username", (err, resp) =>{
          res.status(200).json(resp);
      });
  });
