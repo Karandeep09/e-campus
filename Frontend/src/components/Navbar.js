@@ -24,7 +24,7 @@ const Navbar = () => {
                         <li><Link to="/addblog">Add-Blog</Link></li>
                         {!isLogged ? <li><Link to="/login">Login</Link></li> 
                                     : <> <li><Link to="/profile">Profile</Link></li>
-                                        <li><Link to="/">Sign-out</Link></li> </> }
+                                        <li><Link to="/signout">Sign-out</Link></li> </> }
                     </ul>
                 </nav>
             </div>

@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 import AddBlog from './AddBlog';
 import Error404 from './Error404';
 import SidebarTags from './SidebarTags';
+import Signout from './Signout';
 
 export const BlogContext = React.createContext();
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/about" element={ <About /> } />
             <Route path="/addblog" element={ <AddBlog /> } />
             <Route path="/login" element={ <Login /> } />
+            <Route path="/signout" element={ <Signout />} />
             <Route path="*" element={ <Error404 /> } />
           </Routes>
           <SidebarTags />
