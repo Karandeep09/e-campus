@@ -6,12 +6,10 @@
     margin-top: 25px;
     background: #fff;
 }
-.paginator{
-    max-width: 600px;
-    margin: 0 auto;
-    margin-top: 25px;
-    background: #fff;
+.blog-body img{
+    max-width: 75%;
 }
+
 .blog-header{
     display: flex;
     justify-content: space-between;
@@ -116,3 +114,10 @@
     .post-btn {
       animation: glowing 1300ms infinite;
     }
+
+.paginator{
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 25px;
+    background: #fff;
+}
