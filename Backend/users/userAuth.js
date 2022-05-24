@@ -53,7 +53,7 @@ router.post('/post', auth, async (req,res)=>{
      await db.query(sql,[user_id,post_id], async (erro, resu)=>{
          if(erro) throw erro;
          console.log(resu);
-             await db.query("DELETE from posts WHERE post_id =?",[post_id],(erro, resu)=>{
+             await db.query("DELETE from posts WHERE post_id = ? AND username = ?",[post_id, user_id],(erro, resu)=>{
                  if(erro) throw erro;
                  console.log(resu);
                  if(resu.affectedRows == 1)
