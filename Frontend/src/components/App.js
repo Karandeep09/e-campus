@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 import AddBlog from './AddBlog';
 import Error404 from './Error404';
 import SidebarTags from './SidebarTags';
+import People from './People';
 
 export const BlogContext = React.createContext();
 
@@ -25,16 +26,17 @@ function App() {
       <Router>
         <Navbar />
         <div className='home-layout'>
-          <SidebarTags />
+          {/* <SidebarTags /> */}
           <Routes>
             <Route exact path="/" element={ <BlogList /> }/>
             <Route path="/bloglist" element={ <BlogList /> } />
             <Route path="/about" element={ <About /> } />
             <Route path="/addblog" element={ <AddBlog /> } />
             <Route path="/login" element={ <Login /> } />
+            <Route path="/people" element={ <People /> } />
             <Route path="*" element={ <Error404 /> } />
           </Routes>
-          <SidebarTags />
+          {/* <SidebarTags /> */}
         </div>
       </Router>
     </BlogContext.Provider>

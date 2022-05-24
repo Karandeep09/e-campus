@@ -42,7 +42,10 @@ const AddBlog = () => {
         };
         console.log(requestOptions);
         fetch('http://127.0.0.1:4000/auth/post', requestOptions)
-            .then(response => response.json())
+            .then(response => {
+                response.json();
+                navigate("/bloglist");
+            })
             .then(data => {
                 console.log(data);
             });
