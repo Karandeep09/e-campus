@@ -2,7 +2,7 @@ const SidebarTags = () => {
     return (
         <>
             <div className="sidebar-tags">
-                <h1>Tags: Sidebar</h1>
+                <h5>Select Tags:</h5>
             </div>
         </>
     );
