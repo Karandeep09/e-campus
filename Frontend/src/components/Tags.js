@@ -3,7 +3,7 @@ const Tags = ( {tags} ) => {
     let ptags = [];
     tags = JSON.parse(tags);
     console.log(tags);
-    if(tags){
+    if(Array.isArray(tags)){
        tags.forEach(tag => (
            ptags.push(tag[0])
        ))

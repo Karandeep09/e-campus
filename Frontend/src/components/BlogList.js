@@ -15,13 +15,14 @@ const BlogList = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
 
+    const fetchPosts = async () => {
+        setLoading(true);
+        const res = await axios.get('http://localhost:4000/users/posts');
+        setPosts(res.data);
+        setLoading(false);
+      };
+
     useEffect(() => {
-        const fetchPosts = async () => {
-          setLoading(true);
-          const res = await axios.get('http://localhost:4000/users/posts');
-          setPosts(res.data);
-          setLoading(false);
-        };
         fetchPosts();
       }, []);
 
@@ -35,7 +36,8 @@ const BlogList = () => {
 
     return (
         <div className='blog-container'>
-            <Blog posts={currentPosts} />
+            <Blog posts={currentPosts} fetchPosts={fetchPosts}
+             />
             <div className='paginator'>
             <ReactPaginate 
                onPageChange={paginate}

@@ -3,8 +3,7 @@ import { AiFillLike } from "react-icons/ai";
 import Tags from "./Tags";
 import authHeader from "../sevices/authHeader.service";
 import { useNavigate } from "react-router-dom";
-
-const Blog = ({ posts }) => {  
+const Blog = ({ posts , fetchPosts }) => {  
 
     const handleLike = () => {
         document.querySelector('.blog-likes').classList.toggle('liked');
@@ -20,9 +19,9 @@ const Blog = ({ posts }) => {
         };
         console.log(requestOptions);
         fetch('http://127.0.0.1:4000/auth/delete', requestOptions)
-            .then(response => {
+            .then(async response => {
                 response.json();
-                navigate("/bloglist");
+                fetchPosts();
             })
             .then(data => {
                 console.log(data);
