@@ -12,6 +12,7 @@ import Signout from './Signout';
 import People from './People';
 import Profile from './Profile';
 import IsLogged from '../sevices/IsLoggedIn.service';
+import EditBlog from './EditBlog';
 
 export const BlogContext = React.createContext();
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/signout" element={ <Signout />} />
             <Route path="/people" element={ <People /> } />
             <Route path="/profile" element={ <Profile /> } />
+            <Route path="/blogedit" element={<EditBlog/>} />
             <Route path="*" element={ <Error404 /> } />
           </Routes>
       </Router>

@@ -62,4 +62,36 @@ router.post('/post', auth, async (req,res)=>{
              });
     });
  });
+
+ router.post('/edit', auth, async (req, res) => {
+    let data = {
+        title: req.body.title,
+        content : req.body.content,
+        username : req.user.user_id,
+        tags : JSON.stringify(req.body.tags)
+    };
+    const post_id = req.body.id;
+    const username = req.user.user_id;
+    const sqlpost = "UPDATE posts SET ? WHERE username = ? AND post_id = ?";
+    const deletetags = "DELETE FROM tags WHERE post_id = ?";
+    const sqltags = "INSERT INTO tags (tagname,post_id) VALUES ?";
+    await db.query(sqlpost, [data, username, post_id], async(erro, resu)=>{
+        if(erro) throw erro;
+        console.log(resu);
+        let arr = req.body.tags; // array of array
+        arr.forEach((e)=>{
+            e.push(post_id);
+        });
+        await db.query(deletetags, [post_id], (erro, resu)=>{
+            if(erro ) throw erro;
+            console.log(resu);
+        });
+        await db.query(sqltags, [arr], (erro, resu)=>{
+            if(erro) throw erro;
+            console.log(resu);
+            res.status(201).send("Blog Updated");
+        });
+    });
+ });
+
 module.exports = router;

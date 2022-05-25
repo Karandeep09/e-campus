@@ -3,11 +3,17 @@ import { AiFillLike } from "react-icons/ai";
 import Tags from "./Tags";
 import authHeader from "../sevices/authHeader.service";
 import { useNavigate } from "react-router-dom";
+import blogService from "../sevices/blogedit.service";
 const Blog = ({ posts , fetchPosts }) => {  
 
-    const handleLike = () => {
+    const handleLike = (post_id) => {
+        // alert("Hi");
         document.querySelector('.blog-likes').classList.toggle('liked');
-    }
+        if(document.querySelector('.blog-likes').classList.contains('liked'))
+        document.querySelector('#count-'+post_id).innerHTML = "  1";
+       else
+        document.querySelector('#count-'+post_id).innerHTML = "  ";
+     }
 
     const navigate = useNavigate();
     const handleDelete = (id) =>{
@@ -27,7 +33,11 @@ const Blog = ({ posts , fetchPosts }) => {
                 console.log(data);
             });
     }
-
+    const handleEdit = (posts) => {
+        alert("Ho");
+        blogService.setblog(posts);
+        navigate("/blogedit");
+    }
     return (
         <>
           {posts.map(post => (
@@ -43,7 +53,7 @@ const Blog = ({ posts , fetchPosts }) => {
                         </div>
                     </div>
                     <div className="blog-header-icons">
-                        <div>
+                        <div onClick = {()=>handleEdit(post)}>
                             <BiEdit />
                         </div>
                         <div onClick={() => handleDelete(post.post_id)}>
@@ -65,9 +75,10 @@ const Blog = ({ posts , fetchPosts }) => {
                   </div>
               </div>
               <div className="blog-footer">
-                  <div className="blog-likes" onClick={handleLike}>
+                  <div className="blog-likes" onClick={()=>{handleLike(post.post_id)}}>
                       <AiFillLike className="like-icon" />
                       <p>Like</p>
+                      <p id ={`count-${post.post_id}`}></p>
                   </div>
                   <div className="blog-comment">
                       <BiComment />
