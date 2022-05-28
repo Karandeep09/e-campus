@@ -14,7 +14,7 @@ const Blog = ({ posts , fetchPosts }) => {
        else
         document.querySelector('#count-'+post_id).innerHTML = "  ";
      }
-
+    
     const navigate = useNavigate();
     const handleDelete = (id) =>{
         console.log(id);
@@ -34,10 +34,30 @@ const Blog = ({ posts , fetchPosts }) => {
             });
     }
     const handleEdit = (posts) => {
-        alert("Ho");
-        blogService.setblog(posts);
-        navigate("/blogedit");
+        // alert("Ho");
+        const user = JSON.parse(localStorage.getItem('user'));
+            if(user && user.username === posts.username){
+            blogService.setblog(posts);
+            navigate("/blogedit");
+        }
+        else{
+            console.log("Forbidden");
+        }
     }
+       const showorno = (post)=>{
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user && user.username === post.username){
+            return (<div className="blog-header-icons">
+            <div onClick = {()=>handleEdit(post)}>
+                <BiEdit />
+            </div>
+            <div onClick={() => handleDelete(post.post_id)}>
+                <BiTrash />
+            </div>
+        </div>);
+        }
+        return (<></>);
+ }
     return (
         <>
           {posts.map(post => (
@@ -52,14 +72,7 @@ const Blog = ({ posts , fetchPosts }) => {
                             <p>Information Technology, 2022</p>
                         </div>
                     </div>
-                    <div className="blog-header-icons">
-                        <div onClick = {()=>handleEdit(post)}>
-                            <BiEdit />
-                        </div>
-                        <div onClick={() => handleDelete(post.post_id)}>
-                            <BiTrash />
-                        </div>
-                    </div>
+                     {showorno(post)}
                 </div>
 
               <div className="blog-body">

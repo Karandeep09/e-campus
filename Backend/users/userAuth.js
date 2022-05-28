@@ -82,6 +82,7 @@ router.post('/post', auth, async (req,res)=>{
         arr.forEach((e)=>{
             e.push(post_id);
         });
+        if(resu.affectedRows == 1) {
         await db.query(deletetags, [post_id], (erro, resu)=>{
             if(erro ) throw erro;
             console.log(resu);
@@ -91,6 +92,11 @@ router.post('/post', auth, async (req,res)=>{
             console.log(resu);
             res.status(201).send("Blog Updated");
         });
+       }
+       else{
+           console.log("Forbidden")
+           res.status(403).send("User Forbidden to Edit");
+       } 
     });
  });
 
