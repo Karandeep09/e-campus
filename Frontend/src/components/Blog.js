@@ -5,14 +5,52 @@ import authHeader from "../sevices/authHeader.service";
 import { useNavigate } from "react-router-dom";
 import blogService from "../sevices/blogedit.service";
 const Blog = ({ posts , fetchPosts }) => {  
-
+    
+    const likeinit= (post_id) =>{
+        const requestOptions = {
+            method: 'POST',
+            headers: authHeader(),
+            body: JSON.stringify({post_id : post_id})
+        };
+        fetch("http://127.0.0.1:4000/auth/likestate", requestOptions) 
+        .then(response => {console.log("B",response);return response.json();})
+        .then(data => {
+            console.log("D",data);
+            if(data.liked === 1){
+                document.querySelector(`.blog-likes.like-${post_id}`).classList.add('liked');
+            }
+            document.querySelector('#count-'+post_id).innerHTML = data.count;
+        })
+        // return ();
+    }
     const handleLike = (post_id) => {
         // alert("Hi");
-        document.querySelector('.blog-likes').classList.toggle('liked');
-        if(document.querySelector('.blog-likes').classList.contains('liked'))
-        document.querySelector('#count-'+post_id).innerHTML = "  1";
-       else
-        document.querySelector('#count-'+post_id).innerHTML = "  ";
+        const requestOptions = {
+            method: 'POST',
+            headers: authHeader(),
+            body: JSON.stringify({post_id : post_id})
+        };
+        
+        console.log(requestOptions);
+        let todo = "like";
+        if(document.querySelector(`.blog-likes.like-${post_id}`).classList.contains('liked')){
+            todo = "unlike";
+        }
+        fetch(`http://127.0.0.1:4000/auth/${todo}`, requestOptions)
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
+            .then(data => {
+                if(data.toggle == 1)
+                document.querySelector(`.blog-likes.like-${post_id}`).classList.toggle('liked');
+                document.querySelector('#count-'+post_id).innerHTML = data.count;
+                console.log(data);
+            });
+    //     if(document.querySelector('.blog-likes').classList.contains('liked'))
+    //     document.querySelector('#count-'+post_id).innerHTML = "  1";
+    //    else
+    //     document.querySelector('#count-'+post_id).innerHTML = "  ";
      }
     
     const navigate = useNavigate();
@@ -88,11 +126,12 @@ const Blog = ({ posts , fetchPosts }) => {
                   </div>
               </div>
               <div className="blog-footer">
-                  <div className="blog-likes" onClick={()=>{handleLike(post.post_id)}}>
-                      <AiFillLike className="like-icon" />
+              <div className={`blog-likes like-${post.post_id}`} onClick={()=>{handleLike(post.post_id)}}>
+                      <AiFillLike className="like-icon"/>
                       <p>Like</p>
                       <p id ={`count-${post.post_id}`}></p>
-                  </div>
+              </div>
+                  {likeinit(post.post_id)}
                   <div className="blog-comment">
                       <BiComment />
                       <p>Comment</p>

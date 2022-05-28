@@ -11,7 +11,81 @@ router.use(bodyParser.json());
 router.get('/welcome', auth, (req, res)=>{
     res.send(`Welcome ${req.user.user_id}`);
 });
+router.post('/likestate', auth, async (req,res)=>{
+    username = req.user.user_id;
+    post_id = req.body.post_id;
+    let likestate = {
+        liked : 0,
+        count: 0
+    }
+    // console.log(username, post_id);
+    await db.query("SELECT * from likes WHERE username = ? and post_id = ?", [username, post_id],
+        async (erro, resu)=>{
+            if(erro) throw erro;
+            // console.log("A", resu);
+            if(resu.length){
+                likestate.liked = 1;
+            }
+            await db.query("SELECT COUNT(*) FROM likes WHERE post_id = ?", [post_id],
+                (erro, resu) => {
+                    if(erro) throw erro;
+                    if(resu.length){
+                        likestate.count = resu[0]['COUNT(*)']; 
+                    }
+                    res.send(likestate);
+                } 
+            )
+        }
+    )
+});
+router.post("/like", auth, async (req, res)=>{
+    data = {
+        username : req.user.user_id,
+        post_id : req.body.post_id
+    };
+    let tosend = {
+        toggle : 0,
+        count : 0
+    };
+    await db.query("INSERT IGNORE INTO likes SET ?",[data],
+     async (erro, resu)=>{
+         if(erro) throw erro;
+        //  console.log(resu);
+         if(resu.affectedRows == 1)
+           tosend.toggle = 1
+         else tosend.toggle = 0;  
 
+         await db.query("SELECT COUNT(*) from likes WHERE post_id = ?",[req.body.post_id], (erro, resu)=>{
+            if(erro) throw erro;
+            // console.log(resu);
+            if(resu.length)
+             tosend.count = resu[0]['COUNT(*)'];
+            res.json(tosend); 
+        });
+    })
+});
+router.post("/unlike", auth, async(req, res)=>{
+    
+     let tosend = {
+        toggle : 0,
+        count : 0
+    };
+    await db.query("DELETE from likes WHERE username = ? and post_id = ?",[req.user.user_id, req.body.post_id],
+     async (erro, resu)=>{
+         if(erro) throw erro;
+         if(resu.affectedRows == 1)
+           tosend.toggle = 1;
+         else tosend.toggle = 0;  
+         await db.query("SELECT COUNT(*) from likes WHERE post_id = ?", [req.body.post_id], (erro, resu)=>{
+            if(erro) throw erro;
+            // console.log(resu);
+            if(resu.length)
+            tosend.count = resu[0]['COUNT(*)'];
+            res.send(tosend);
+        });
+    })
+    
+});
 router.post('/post', auth, async (req,res)=>{
     let datetime = moment().format().slice(0, 19).replace('T', ' ');;
     console.log(req.body);
