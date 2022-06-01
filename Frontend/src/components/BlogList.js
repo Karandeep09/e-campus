@@ -3,6 +3,7 @@ import Blog from "./Blog";
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
+import { BiSearchAlt } from "react-icons/bi";
 import {useNavigate} from 'react-router-dom';
 
 const BlogList = () => {
@@ -36,6 +37,16 @@ const BlogList = () => {
 
     return (
         <div className='blog-container'>
+
+            <div className='search-blogs'>
+                <h5>Search Profiles <BiSearchAlt /></h5>
+                <div className="search-blogs-body">
+                    <form>
+                        <input type="text" name="search-blog" id="search-blog" />
+                    </form>
+                </div>
+            </div>
+
             <Blog posts={currentPosts} fetchPosts={fetchPosts}
              />
             <div className='paginator'>

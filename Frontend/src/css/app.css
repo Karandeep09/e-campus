@@ -5,6 +5,7 @@
 @import 'addblog.css';
 @import 'profile.css';
 @import 'people.css';
+@import 'comment.css';
 
 html{
     background: rgb(250, 249, 240);
@@ -16,6 +17,7 @@ body{
     background: rgb(250, 249, 240);
 }
 :root{
+    --bgsolid: rgb(250, 249, 240);
     --bgcolor: #6f42c1;
     --textcolor: #ffc107;
 }

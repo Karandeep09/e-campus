@@ -13,6 +13,7 @@ import People from './People';
 import Profile from './Profile';
 import IsLogged from '../sevices/IsLoggedIn.service';
 import EditBlog from './EditBlog';
+import EditProfile from './EditProfile';
 
 export const BlogContext = React.createContext();
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/blogedit" element={<EditBlog/>} />
             <Route path="*" element={ <Error404 /> } />
+            <Route path="/editprofile" element={ <EditProfile /> } />
           </Routes>
       </Router>
     </BlogContext.Provider>
