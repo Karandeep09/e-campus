@@ -13,6 +13,7 @@
 .blog-header{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 .blog-header-left{
     display: flex;
@@ -22,10 +23,15 @@
 }
 .blog-header-profile h6{
     font-weight: bolder;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
 }
 .blog-header-profile p{
     font-size: 12px;
     color: gray;
+    margin: 0;
+    padding: 0;
 }
 
 .blog-header-icons{

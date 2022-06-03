@@ -4,8 +4,10 @@ import Tags from "./Tags";
 import authHeader from "../sevices/authHeader.service";
 import { useNavigate } from "react-router-dom";
 import blogService from "../sevices/blogedit.service";
+import Comments from "./Comments";
+// import  axios  from "axios";
 const Blog = ({ posts , fetchPosts }) => {  
-    
+
     const likeinit= (post_id) =>{
         const requestOptions = {
             method: 'POST',
@@ -82,20 +84,26 @@ const Blog = ({ posts , fetchPosts }) => {
             console.log("Forbidden");
         }
     }
-       const showorno = (post)=>{
+       const EditAndDelete = (post)=>{
         const user = JSON.parse(localStorage.getItem('user'));
         if(user && user.username === post.username){
-            return (<div className="blog-header-icons">
-            <div onClick = {()=>handleEdit(post)}>
-                <BiEdit />
-            </div>
-            <div onClick={() => handleDelete(post.post_id)}>
-                <BiTrash />
-            </div>
-        </div>);
+            return (
+                <div className="blog-header-icons">
+                    <div onClick = {()=>handleEdit(post)}>
+                        <BiEdit />
+                    </div>
+                    <div onClick={() => handleDelete(post.post_id)}>
+                        <BiTrash />
+                    </div>
+                </div>
+            );
         }
         return (<></>);
  }
+
+    function handleCommentShow(){
+        document.querySelector('.comments').classList.toggle('display-comment');
+    }
     return (
         <>
           {posts.map(post => (
@@ -108,9 +116,10 @@ const Blog = ({ posts , fetchPosts }) => {
                         <div className="blog-header-profile">
                             <h6>{post.nm}</h6>
                             <p>Information Technology, 2022</p>
+                            <p className="blog-time">30m</p>
                         </div>
                     </div>
-                     {showorno(post)}
+                     {EditAndDelete(post)}
                 </div>
 
               <div className="blog-body">
@@ -132,10 +141,14 @@ const Blog = ({ posts , fetchPosts }) => {
                       <p id ={`count-${post.post_id}`}></p>
               </div>
                   {likeinit(post.post_id)}
-                  <div className="blog-comment">
+                  <div className="blog-comment" onClick={handleCommentShow}>
                       <BiComment />
                       <p>Comment</p>
                   </div>
+              </div>
+              <div className="comments">
+                  <Comments post_id={post.post_id} /> 
+                  {/* getcomments */}
               </div>
           </div>
           ))}

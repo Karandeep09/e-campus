@@ -11,9 +11,23 @@ router.use(bodyParser.json());
 router.get('/welcome', auth, (req, res)=>{
     res.send(`Welcome ${req.user.user_id}`);
 });
+
+router.post('/comment', auth, async(req, res) => {
+    let data = {
+        post_id : req.body.post_id,
+        username : req.user.user_id,
+        content : req.body.content
+    }
+    let sql = "INSERT INTO comments SET ?";
+    await db.query(sql, [data], (err, resp) => {
+        if(err) throw err;
+        res.status(201).send("Comment Created");
+    });
+});
+
 router.post('/likestate', auth, async (req,res)=>{
-    username = req.user.user_id;
-    post_id = req.body.post_id;
+    let username = req.user.user_id;
+    let post_id = req.body.post_id;
     let likestate = {
         liked : 0,
         count: 0
@@ -22,10 +36,12 @@ router.post('/likestate', auth, async (req,res)=>{
     await db.query("SELECT * from likes WHERE username = ? and post_id = ?", [username, post_id],
         async (erro, resu)=>{
             if(erro) throw erro;
-            // console.log("A", resu);
+            console.log("A", post_id, resu);
+
             if(resu.length){
                 likestate.liked = 1;
             }
+            
             await db.query("SELECT COUNT(*) FROM likes WHERE post_id = ?", [post_id],
                 (erro, resu) => {
                     if(erro) throw erro;

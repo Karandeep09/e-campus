@@ -73,8 +73,16 @@ router.post("/login", async (req, res)=>{
 
  router.get("/posts", async (req, res)=>{
      await db.query("SELECT * FROM posts JOIN users ON posts.username = users.username", (err, resp) =>{
-         res.status(200).json(resp);
+        if(err) throw err; 
+        res.status(200).json(resp);
      });
  });
 
+ router.get("/comments/:id", async(req,res) => {
+     let post_id = req.params.id;
+     await db.query("SELECT * FROM comments WHERE post_id = ?",[post_id], (err, resp) => {
+         if(err) throw err; 
+         res.status(200).json(resp);
+     });
+ });
 module.exports = router;

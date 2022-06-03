@@ -1,12 +1,18 @@
 import { BiSearchAlt } from "react-icons/bi";
 
 const People = () => {
+
+    function handlePeopleSearch(e){
+        e.preventDefault();
+        const searchEl = document.querySelector('#search-people');
+        console.log(searchEl.value);
+    }
     return ( 
         <>
         <div className="people-comp">
             <h5>Search Profiles <BiSearchAlt /></h5>
             <div className="search-people">
-                <form>
+                <form onSubmit={handlePeopleSearch}>
                     <input type="text" name="search-people" id="search-people" />
                 </form>
             </div>

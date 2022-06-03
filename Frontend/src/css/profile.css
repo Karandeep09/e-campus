@@ -1,3 +1,7 @@
+.profile p{
+    margin: 0;
+    padding: 0;
+}
 .profile{
     max-width: 600px;
     margin: 0 auto;
@@ -16,7 +20,44 @@
 .profile-img img{
     width: 60%;
     margin-right: 40px;
+    border: 1px solid var(--textcolor);
+    border-radius: 50%;
+}
+.profile-about h5{
+    color: var(--textcolor);
+    font-weight: bolder;
+}
+.profile-about p{
+    margin-top: 2px;
+}
+.strong{
+    color: var(--bgcolor);
+    margin-right: 10px;
+}
+.profile-bio{
+    margin-top: 30px;
 }
 .profile-bio p{
     max-width: 500px;
+    margin-bottom: 5px;
+}
+.profile-bio strong{
+    font-size: 18px;
+}
+
+.profile-edit{
+    margin-top: 40px;
+    text-align: center;
+}
+.profile-edit button{
+    border: 2px solid var(--textcolor);
+    border-radius: 20px;
+    background: var(--bgcolor);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 15px;
+}
+.profile-edit button:hover{
+    border: 2px solid var(--bgcolor);
+    background: var(--textcolor);
 }
