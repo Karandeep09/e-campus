@@ -101,8 +101,8 @@ const Blog = ({ posts , fetchPosts }) => {
         return (<></>);
  }
 
-    function handleCommentShow(){
-        document.querySelector('.comments').classList.toggle('display-comment');
+    function handleCommentShow(post_id){
+        document.querySelector(`.comments.comm-${post_id}`).classList.toggle('display-comment');
     }
     return (
         <>
@@ -141,12 +141,12 @@ const Blog = ({ posts , fetchPosts }) => {
                       <p id ={`count-${post.post_id}`}></p>
               </div>
                   {likeinit(post.post_id)}
-                  <div className="blog-comment" onClick={handleCommentShow}>
+                  <div className="blog-comment" onClick={()=>{handleCommentShow(post.post_id);}}>
                       <BiComment />
                       <p>Comment</p>
                   </div>
               </div>
-              <div className="comments">
+              <div className={`comments comm-${post.post_id}`}>
                   <Comments post_id={post.post_id} /> 
                   {/* getcomments */}
               </div>

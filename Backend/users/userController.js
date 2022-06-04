@@ -81,7 +81,7 @@ router.post("/login", async (req, res)=>{
  router.get("/comments/:id", async(req,res) => {
      let post_id = req.params.id;
      await db.query("SELECT * FROM comments WHERE post_id = ?",[post_id], (err, resp) => {
-         if(err) throw err; 
+         if(err) throw err;  
          res.status(200).json(resp);
      });
  });

@@ -30,11 +30,11 @@ const Comments = ( {post_id} ) => {
     useEffect( ()=>{
         fetchComments(post_id); 
     }
-    ,[]);
+    ,[post_id]);
 
     return (
         <> 
-            <div className="comments">
+            <div className={"comments"}>
               {comments.map( comment => (
                 <div className="comment">
                     <div className="comment-head">
@@ -52,7 +52,7 @@ const Comments = ( {post_id} ) => {
                 </div>
               ))}  
                 <div className="comment-input-body">
-                    <input type="text" id={`comment-input-${post_id}`}/>
+                    <input type="text" className="comment-input" id={`comment-input-${post_id}`}/>
                     <button onClick={handleComment}>comment</button>
                 </div>
             </div>
