@@ -1,7 +1,31 @@
+import { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-
+import axios from "axios";
+import authHeader from "../sevices/authHeader.service";
+import Profile from "./Profile";
+import { useNavigate } from "react-router-dom";
 const People = () => {
+    const [people, setPeople] = useState([]);
 
+    useEffect(
+          () => {
+           async  function setup () { 
+            const res = await axios.get('http://localhost:4000/auth/people',
+                {
+                   headers: authHeader()
+               }
+             );
+             setPeople(res.data);
+           }  
+            setup();  
+        },
+    []);
+    const navigate = useNavigate();
+
+    function openProfile(username){
+        // alert(username);
+        navigate('/profile', {state : {username : username}});    
+    }       
     function handlePeopleSearch(e){
         e.preventDefault();
         const searchEl = document.querySelector('#search-people');
@@ -16,7 +40,29 @@ const People = () => {
                     <input type="text" name="search-people" id="search-people" />
                 </form>
             </div>
-            <div className="search-profiles">
+            <>
+          {
+          people.map(
+             maihuna =>  (
+                    <div className="search-profiles">
+                <div className="search-profiles-body">
+                    <div className="blog-header-left">
+                        <div className="blog-header-img">
+                            <img src="https://img.icons8.com/color/48/000000/user-male-circle--v1.png" alt="Profile" />
+                        </div>
+                        <div className="blog-header-profile">
+                            <h6>{maihuna.username}</h6>
+                            <p>Information Technology, 2022</p>
+                        </div>
+                    </div>
+                    <div className="blog-header-right" onClick={ () => {openProfile(maihuna.username);} }>
+                        <p>Open</p>
+                    </div>
+                   </div>
+                 </div>
+            ))}
+            </>
+            {/* <div className="search-profiles">
                 <div className="search-profiles-body">
                     <div className="blog-header-left">
                         <div className="blog-header-img">
@@ -31,8 +77,8 @@ const People = () => {
                         <p>Open</p>
                     </div>
                 </div>
-            </div>
-            <div className="search-profiles">
+            </div> */}
+            {/* <div className="search-profiles">
                 <div className="search-profiles-body">
                     <div className="blog-header-left">
                         <div className="blog-header-img">
@@ -47,8 +93,8 @@ const People = () => {
                         <p>Open</p>
                     </div>
                 </div>
-            </div>
-            <div className="search-profiles">
+            </div> */}
+            {/* <div className="search-profiles">
                 <div className="search-profiles-body">
                     <div className="blog-header-left">
                         <div className="blog-header-img">
@@ -63,7 +109,7 @@ const People = () => {
                         <p>Open</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
         </>
      );

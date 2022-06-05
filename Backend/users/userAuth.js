@@ -11,7 +11,23 @@ router.use(bodyParser.json());
 router.get('/welcome', auth, (req, res)=>{
     res.send(`Welcome ${req.user.user_id}`);
 });
-
+router.get('/people', auth, async (req, res) => {
+       await db.query("SELECT * FROM users",(err, resp) =>{
+           if(err) throw err;
+           resp.forEach(r => {
+               delete r.pwd;
+           });
+           res.status(200).json(resp);
+       });
+});
+router.get('/profile/:username', auth, async(req, res) => {
+    let username = req.params.username;
+    let sql  = "SELECT * FROM users WHERE username = ?";
+    await db.query(sql , [username], (err, resp) => {
+        if(err) throw err;
+        return res.status(200).json(resp);
+    });
+});
 router.post('/comment', auth, async(req, res) => {
     let data = {
         post_id : req.body.post_id,

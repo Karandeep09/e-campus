@@ -5,6 +5,7 @@ import authHeader from "../sevices/authHeader.service";
 import { useNavigate } from "react-router-dom";
 import blogService from "../sevices/blogedit.service";
 import Comments from "./Comments";
+const moment = require('moment');
 // import  axios  from "axios";
 const Blog = ({ posts , fetchPosts }) => {  
 
@@ -101,8 +102,8 @@ const Blog = ({ posts , fetchPosts }) => {
         return (<></>);
  }
 
-    function handleCommentShow(){
-        document.querySelector('.comments').classList.toggle('display-comment');
+    function handleCommentShow(post_id){
+        document.querySelector(`.comments.comm-${post_id}`).classList.toggle('display-comment');
     }
     return (
         <>
@@ -116,7 +117,7 @@ const Blog = ({ posts , fetchPosts }) => {
                         <div className="blog-header-profile">
                             <h6>{post.nm}</h6>
                             <p>Information Technology, 2022</p>
-                            <p className="blog-time">30m</p>
+                            <p className="blog-time">{moment(post._date).fromNow()}</p>
                         </div>
                     </div>
                      {EditAndDelete(post)}
@@ -142,12 +143,12 @@ const Blog = ({ posts , fetchPosts }) => {
                       <p id ={`count-${post.post_id}`}></p>
               </div>
                   {likeinit(post.post_id)}
-                  <div className="blog-comment" onClick={handleCommentShow}>
+                  <div className="blog-comment" onClick={()=>{handleCommentShow(post.post_id);}}>
                       <BiComment />
                       <p>Comment</p>
                   </div>
               </div>
-              <div className="comments">
+              <div className={`comments comm-${post.post_id}`}>
                   <Comments post_id={post.post_id} /> 
                   {/* getcomments */}
               </div>

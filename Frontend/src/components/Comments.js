@@ -30,11 +30,11 @@ const Comments = ( {post_id} ) => {
     useEffect( ()=>{
         fetchComments(post_id); 
     }
-    ,[]);
+    ,[post_id]);
 
     return (
         <> 
-            <div className="comments" id={`comment-${post_id}`}>
+            <div className={"comments"}>
               {comments.map( comment => (
                 <div className="comment" id = {`comment-${comment.comment_id}`}>
                     <div className="comment-head">
