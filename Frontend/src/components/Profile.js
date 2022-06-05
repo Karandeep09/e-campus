@@ -63,10 +63,21 @@ const Profile = () => {
                }   
                return (<></>);
             }    
+            const renderBio = () => {
+                if(me && me.length){
+                    return (<p>
+                        {me[0].bio}
+                      </p>
+                    );
+                }
+                else{
+                    return (<></>);
+                }
+            };
               
     let navigate = useNavigate();
     function handleEditProfile(){
-        navigate('/editprofile');
+        navigate('/editprofile', {state:{username : me[0].username}});
     }
     return (
         <> 
@@ -79,7 +90,7 @@ const Profile = () => {
                 </div>
                 <div className="profile-bio">
                     <p><strong className="strong">Bio:</strong></p>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    {renderBio()}
                 </div>
                 {editProfile()}
             </div>

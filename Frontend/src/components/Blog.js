@@ -116,7 +116,7 @@ const Blog = ({ posts , fetchPosts }) => {
                         </div>
                         <div className="blog-header-profile">
                             <h6>{post.nm}</h6>
-                            <p>Information Technology, 2022</p>
+                            <p>{post.branch} {" "} {post.batch}</p>
                             <p className="blog-time">{moment(post._date).fromNow()}</p>
                         </div>
                     </div>
