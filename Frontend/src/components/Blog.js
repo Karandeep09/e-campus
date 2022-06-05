@@ -124,6 +124,7 @@ const Blog = ({ posts , fetchPosts }) => {
 
               <div className="blog-body">
                   <div className="blog-heading">
+                      {/* <p>{post.post_id}</p> */}
                       <p><strong>{post.title}</strong></p>
                   </div>
                   <div className="blog-content">

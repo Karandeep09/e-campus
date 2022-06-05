@@ -36,7 +36,7 @@
 .comment-input-body{
     text-align: center;
 }
-#comment-input{
+.comment-input{
     width: 80%;
     padding: 10px;
     border: 1px solid var(--bgcolor);

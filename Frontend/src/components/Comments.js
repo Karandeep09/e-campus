@@ -34,9 +34,9 @@ const Comments = ( {post_id} ) => {
 
     return (
         <> 
-            <div className="comments">
+            <div className="comments" id={`comment-${post_id}`}>
               {comments.map( comment => (
-                <div className="comment">
+                <div className="comment" id = {`comment-${comment.comment_id}`}>
                     <div className="comment-head">
                         <div className="comment-head-left">
                             <img src="https://img.icons8.com/color/48/000000/user-male-circle--v1.png" alt="Profile" />
@@ -52,7 +52,7 @@ const Comments = ( {post_id} ) => {
                 </div>
               ))}  
                 <div className="comment-input-body">
-                    <input type="text" id={`comment-input-${post_id}`}/>
+                    <input type="text" className="comment-input" id={`comment-input-${post_id}`}/>
                     <button onClick={handleComment}>comment</button>
                 </div>
             </div>
