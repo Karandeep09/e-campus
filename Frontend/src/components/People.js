@@ -4,11 +4,18 @@ import axios from "axios";
 import authHeader from "../sevices/authHeader.service";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
+import IsLogged from '../sevices/IsLoggedIn.service';
+
 const People = () => {
     const [people, setPeople] = useState([]);
 
+    let navigate = useNavigate();
     useEffect(
           () => {
+            if(!IsLogged()){
+                console.log("abc");
+                navigate("/login");
+            }
            async  function setup () { 
             const res = await axios.get('http://localhost:4000/auth/people',
                 {
@@ -20,7 +27,6 @@ const People = () => {
             setup();  
         },
     []);
-    const navigate = useNavigate();
 
     function openProfile(username){
         // alert(username);

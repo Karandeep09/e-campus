@@ -39,11 +39,16 @@ const BlogList = () => {
         <div className='blog-container'>
 
             <div className='search-blogs'>
-                <h5>Search Profiles <BiSearchAlt /></h5>
-                <div className="search-blogs-body">
-                    <form>
-                        <input type="text" name="search-blog" id="search-blog" />
-                    </form>
+                <div className='search-blog-active'>
+                    <BiSearchAlt />
+                </div>
+                <div className='search-blog-hidden'>
+                    <h5>Search Profiles <BiSearchAlt /></h5>
+                    <div className="search-blogs-body">
+                        <form>
+                            <input type="text" name="search-blog" id="search-blog" />
+                        </form>
+                    </div>
                 </div>
             </div>
 
