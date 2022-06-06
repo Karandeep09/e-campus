@@ -11,6 +11,27 @@ router.use(bodyParser.json());
 router.get('/welcome', auth, (req, res)=>{
     res.send(`Welcome ${req.user.user_id}`);
 });
+
+router.post('/update/profile', auth, async (req, res)=>{
+   let data = { 
+        nm : req.body.name,
+        batch : req.body.batch,
+        branch : req.body.branch,
+        bio : req.body.bio
+   } 
+   let username = req.user.user_id;
+
+   await db.query("UPDATE users SET ? WHERE username = ?", [data,username], async (err, resp) => {
+       if(err) throw err;
+       await db.query("SELECT * FROM users WHERE username = ?", [username], (err, resp) => {
+           if(err) throw err;
+           console.log(resp);
+           delete resp[0].pwd;
+           res.status(200).json(resp[0]);
+       });
+   });
+});
+
 router.get('/people', auth, async (req, res) => {
        await db.query("SELECT * FROM users",(err, resp) =>{
            if(err) throw err;
@@ -29,9 +50,11 @@ router.get('/profile/:username', auth, async(req, res) => {
     });
 });
 router.post('/comment', auth, async(req, res) => {
+    let datetime = moment().format().slice(0, 19).replace('T', ' ');;
     let data = {
         post_id : req.body.post_id,
         username : req.user.user_id,
+        _date : datetime,
         content : req.body.content
     }
     let sql = "INSERT INTO comments SET ?";

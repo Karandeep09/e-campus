@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import authHeader from "../sevices/authHeader.service";
+import moment from "moment";
 const axios = require("axios");
 const Comments = ( {post_id} ) => {
     const  [comments, setComments] = useState([]);
@@ -43,7 +44,8 @@ const Comments = ( {post_id} ) => {
                             <h6>{comment.username}</h6>
                         </div>
                         <div>
-                            <p className="comment-time">10m</p>
+                            {/* <p className="comment-time">10m</p> */}
+                            <p className="comment-time">{moment(comment._date).fromNow()}</p>
                         </div>
                     </div>
                     <div className="comment-content">
