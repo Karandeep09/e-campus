@@ -6,6 +6,7 @@
 @import 'profile.css';
 @import 'people.css';
 @import 'comment.css';
+@import 'bloglist.css';
 
 html{
     background: rgb(250, 249, 240);

@@ -4,11 +4,18 @@ import axios from "axios";
 import authHeader from "../sevices/authHeader.service";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
+import IsLogged from '../sevices/IsLoggedIn.service';
+
 const People = () => {
     const [people, setPeople] = useState([]);
 
+    let navigate = useNavigate();
     useEffect(
           () => {
+            if(!IsLogged()){
+                console.log("abc");
+                navigate("/login");
+            }
            async  function setup () { 
             const res = await axios.get('http://localhost:4000/auth/people',
                 {
@@ -20,7 +27,6 @@ const People = () => {
             setup();  
         },
     []);
-    const navigate = useNavigate();
 
     function openProfile(username){
         // alert(username);
@@ -52,7 +58,7 @@ const People = () => {
                         </div>
                         <div className="blog-header-profile">
                             <h6>{maihuna.username}</h6>
-                            <p>Information Technology, 2022</p>
+                            <p>{maihuna.branch}, {maihuna.batch}</p>
                         </div>
                     </div>
                     <div className="blog-header-right" onClick={ () => {openProfile(maihuna.username);} }>

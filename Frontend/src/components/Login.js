@@ -25,6 +25,7 @@ const Login = () => {
                 if(data.token){
                     localStorage.setItem("user", JSON.stringify(data));
                     navigate("/bloglist");
+                    window.location.reload();
                 }
             });
     }
@@ -53,7 +54,10 @@ const Login = () => {
                 document.getElementById('sec-1').reset();
                 logincall(data.username, data.password);
                 response.json()
-            }).then(data => console.log(data));
+            }).then(data => {
+                console.log(data);
+                window.location.reload();
+            });
 
         document.getElementById('sec-1').reset();
         // logincall(data.username, data.password);

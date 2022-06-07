@@ -9,6 +9,7 @@ const Signout = () => {
         if(!IsLogged()){
             console.log("abc");
             navigate("/login");
+            window.location.reload();
         }
         else console.log("def");
     })
