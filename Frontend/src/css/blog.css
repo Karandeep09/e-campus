@@ -135,3 +135,7 @@
 .liked{
     color: blue;
 }
+
+.blog-header-img img, .blog-header-profile h6{
+    cursor: pointer;
+}

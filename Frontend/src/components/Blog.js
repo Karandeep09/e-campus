@@ -56,7 +56,7 @@ const Blog = ({ posts , fetchPosts }) => {
     //     document.querySelector('#count-'+post_id).innerHTML = "  ";
      }
     
-    const navigate = useNavigate();
+    let navigate = useNavigate();
     const handleDelete = (id) =>{
         console.log(id);
         const requestOptions = {
@@ -105,18 +105,24 @@ const Blog = ({ posts , fetchPosts }) => {
     function handleCommentShow(post_id){
         document.querySelector(`.comments.comm-${post_id}`).classList.toggle('display-comment');
     }
+
+    function openProfile(username){
+        // alert(username);
+        navigate('/profile', {state : {username : username}});    
+    }
+
     return (
         <>
           {posts.map(post => (
             <div className="blog">
               <div className="blog-header">
                     <div className="blog-header-left">
-                        <div className="blog-header-img">
-                            <img src="https://img.icons8.com/color/48/000000/user-male-circle--v1.png" alt="Profile" />
+                        <div className="blog-header-img" >
+                            <img onClick={ () => {openProfile(post.username);} } src="https://img.icons8.com/color/48/000000/user-male-circle--v1.png" alt="Profile" />
                         </div>
                         <div className="blog-header-profile">
-                            <h6>{post.nm}</h6>
-                            <p>{post.branch} {" "} {post.batch}</p>
+                            <h6 onClick={ () => {openProfile(post.username);} }>{post.nm}</h6>
+                            <p>{post.branch} {", "} {post.batch}</p>
                             <p className="blog-time">{moment(post._date).fromNow()}</p>
                         </div>
                     </div>

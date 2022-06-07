@@ -38,7 +38,7 @@ const BlogList = () => {
     return (
         <div className='blog-container'>
 
-            <div className='search-blogs'>
+            {/* <div className='search-blogs'>
                 <div className='search-blog-active'>
                     <BiSearchAlt />
                 </div>
@@ -50,7 +50,7 @@ const BlogList = () => {
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <Blog posts={currentPosts} fetchPosts={fetchPosts}
              />

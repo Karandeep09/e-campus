@@ -58,7 +58,7 @@ const People = () => {
                         </div>
                         <div className="blog-header-profile">
                             <h6>{maihuna.username}</h6>
-                            <p>Information Technology, 2022</p>
+                            <p>{maihuna.branch}, {maihuna.batch}</p>
                         </div>
                     </div>
                     <div className="blog-header-right" onClick={ () => {openProfile(maihuna.username);} }>
