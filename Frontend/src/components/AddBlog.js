@@ -41,7 +41,7 @@ const AddBlog = () => {
             body: JSON.stringify(blogdata)
         };
         console.log(requestOptions);
-        fetch('http://127.0.0.1:4000/auth/post', requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/auth/post`, requestOptions)
             .then(response => {
                 response.json();
                 navigate("/bloglist");

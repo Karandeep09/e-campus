@@ -177,7 +177,7 @@ router.post('/post', auth, async (req,res)=>{
  router.post('/delete',auth, async (req, res)=>{
      const post_id = req.body.id;
      const user_id = req.user.user_id;
-     let sql = "UPDATE posts SET deleted = 1 WHERE username = ? post_id = ?";
+     let sql = "UPDATE posts SET deleted = 1 WHERE username = ? AND post_id = ?";
      console.log(user_id, post_id);
      await db.query(sql,[user_id,post_id], async (erro, resu)=>{
          if(erro) throw erro;

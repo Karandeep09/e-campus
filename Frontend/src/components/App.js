@@ -23,7 +23,7 @@ function App() {
   const blogContextValue = {
     blogs
   };
-
+  console.log(process.env.REACT_APP_API_URL);
   const [isLogged, setIsLogged] = useState(false);
     useEffect(() => {
         if(IsLogged())

@@ -26,7 +26,7 @@ const Profile = () => {
                 user.username = username;
             } 
                     const headers = authHeader();
-                    fetch(`http://127.0.0.1:4000/auth/profile/${user.username}`, {headers})
+                    fetch(`${process.env.REACT_APP_API_URL}/auth/profile/${user.username}`, {headers})
                         .then(async response => {
                             return response.json();
                         })

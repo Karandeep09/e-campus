@@ -11,7 +11,7 @@ const EditProfile = () => {
        
        useEffect(() => {
         const headers = authHeader();
-        fetch(`http://127.0.0.1:4000/auth/profile/${location.state.username}`, {headers})
+        fetch(`${process.env.REACT_APP_API_URL}/auth/profile/${location.state.username}`, {headers})
             .then(async response => {
                 return response.json();
             })
@@ -40,7 +40,7 @@ const EditProfile = () => {
             body: JSON.stringify(data)
         };
         console.log(requestOptions);
-        fetch('http://127.0.0.1:4000/auth/update/profile', requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/auth/update/profile`, requestOptions)
             .then(response => {
                 return response.json()
             })

@@ -49,7 +49,7 @@ const EditBlog = () => {
             body: JSON.stringify(blogdata)
         };
         console.log(requestOptions);
-        fetch('http://127.0.0.1:4000/auth/edit', requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/auth/edit`, requestOptions)
             .then(response => {
                 response.json();
                 navigate("/bloglist");

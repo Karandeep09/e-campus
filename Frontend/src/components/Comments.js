@@ -14,7 +14,7 @@ const Comments = ( {post_id} ) => {
             body: JSON.stringify({content : comment.value, post_id : post_id})
         };
 
-        fetch('http://127.0.0.1:4000/auth/comment', requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/auth/comment`, requestOptions)
             .then(response => {
                 document.querySelector(`#comment-input-${post_id}`).value = ''; 
                 fetchComments(post_id);
@@ -24,7 +24,7 @@ const Comments = ( {post_id} ) => {
     
         const fetchComments = async function(post_id){
             console.log("Pid", post_id);
-            const res = await axios.get(`http://localhost:4000/users/comments/${post_id}`);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/comments/${post_id}`);
             setComments(res.data);
         }
 

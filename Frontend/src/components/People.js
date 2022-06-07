@@ -17,7 +17,7 @@ const People = () => {
                 navigate("/login");
             }
            async  function setup () { 
-            const res = await axios.get('http://localhost:4000/auth/people',
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/people`,
                 {
                    headers: authHeader()
                }

@@ -15,7 +15,7 @@ const Blog = ({ posts , fetchPosts }) => {
             headers: authHeader(),
             body: JSON.stringify({post_id : post_id})
         };
-        fetch("http://127.0.0.1:4000/auth/likestate", requestOptions) 
+        fetch(`${process.env.REACT_APP_API_URL}/auth/likestate`, requestOptions) 
         .then(response => {console.log("B",response);return response.json();})
         .then(data => {
             console.log("D",data);
@@ -39,7 +39,7 @@ const Blog = ({ posts , fetchPosts }) => {
         if(document.querySelector(`.blog-likes.like-${post_id}`).classList.contains('liked')){
             todo = "unlike";
         }
-        fetch(`http://127.0.0.1:4000/auth/${todo}`, requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/auth/${todo}`, requestOptions)
             .then(response => {
                 console.log(response);
                 return response.json();
@@ -65,7 +65,7 @@ const Blog = ({ posts , fetchPosts }) => {
             body: JSON.stringify({id : id})
         };
         console.log(requestOptions);
-        fetch('http://127.0.0.1:4000/auth/delete', requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/auth/delete`, requestOptions)
             .then(async response => {
                 response.json();
                 fetchPosts();

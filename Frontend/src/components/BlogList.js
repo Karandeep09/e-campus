@@ -18,7 +18,7 @@ const BlogList = () => {
 
     const fetchPosts = async () => {
         setLoading(true);
-        const res = await axios.get('http://localhost:4000/users/posts');
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/posts`);
         setPosts(res.data);
         setLoading(false);
       };

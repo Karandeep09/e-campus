@@ -18,7 +18,7 @@ const Login = () => {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         };
-        fetch('http://127.0.0.1:4000/users/login', requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/users/login`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -49,7 +49,7 @@ const Login = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         };
-        fetch('http://127.0.0.1:4000/users/createUser', requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/users/createUser`, requestOptions)
             .then(response => {
                 document.getElementById('sec-1').reset();
                 logincall(data.username, data.password);
