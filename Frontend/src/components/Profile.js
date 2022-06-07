@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import authHeader from "../sevices/authHeader.service";
+
 const Profile = () => {
     const [me, setMe] = useState(undefined);
     const [edit, setEdit] = useState(false);
@@ -16,25 +17,25 @@ const Profile = () => {
           return (<></>);
     };
 
-            const getMe = (username)=>{
-                const user = JSON.parse(localStorage.getItem('user'));
-                if(username && username === user.username){
-                    setEdit(true);
-                }
-                if(username){
-                    user.username = username;
-                } 
-                        const headers = authHeader();
-                        fetch(`http://127.0.0.1:4000/auth/profile/${user.username}`, {headers})
-                            .then(async response => {
-                                return response.json();
-                            })
-                            .then(data => {
-                                setMe(data);
-                                console.log(data);
-                            });    
-                    
-                }
+        const getMe = (username)=>{
+            const user = JSON.parse(localStorage.getItem('user'));
+            if(username && username === user.username){
+                setEdit(true);
+            }
+            if(username){
+                user.username = username;
+            } 
+                    const headers = authHeader();
+                    fetch(`http://127.0.0.1:4000/auth/profile/${user.username}`, {headers})
+                        .then(async response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            setMe(data);
+                            console.log(data);
+                        });    
+                
+            }
         
         const location = useLocation();        
         useEffect( () => {

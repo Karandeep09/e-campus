@@ -37,7 +37,7 @@ const Comments = ( {post_id} ) => {
         <> 
             <div className={"comments"}>
               {comments.map( comment => (
-                <div className="comment">
+                <div className="comment" id = {`comment-${comment.comment_id}`}>
                     <div className="comment-head">
                         <div className="comment-head-left">
                             <img src="https://img.icons8.com/color/48/000000/user-male-circle--v1.png" alt="Profile" />
