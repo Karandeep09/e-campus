@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import axios from "axios";
 import authHeader from "../sevices/authHeader.service";
-import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import IsLogged from '../sevices/IsLoggedIn.service';
-
+import $ from "jquery";
 const People = () => {
     const [people, setPeople] = useState([]);
-
+    const [search, setSearch] = useState(false);
+    const [searchPeople, setSearchPeople] = useState([]);
     let navigate = useNavigate();
     useEffect(
           () => {
@@ -27,7 +27,23 @@ const People = () => {
             setup();  
         },
     []);
-
+    let value;
+    function matches(people){
+        let pattern = new RegExp(`^${value}`);
+        return pattern.test(people.username);
+    }
+    $("#search-people").on("input", ()=>{
+        value = $("#search-people").val();
+        if(value){
+            setSearch(true);
+            console.log(value);
+            setSearchPeople(people.filter(matches));
+        }
+        else{
+            setSearch(false);
+        }
+        console.log(search);
+    });
     function openProfile(username){
         // alert(username);
         navigate('/profile', {state : {username : username}});    
@@ -36,6 +52,50 @@ const People = () => {
         e.preventDefault();
         const searchEl = document.querySelector('#search-people');
         console.log(searchEl.value);
+    }
+    function renderPeople(){
+        if(search){     
+         return searchPeople.map(
+               maihuna =>  (
+                      <div className="search-profiles">
+                  <div className="search-profiles-body">
+                      <div className="blog-header-left">
+                          <div className="blog-header-img">
+                              <img src="https://img.icons8.com/color/48/000000/user-male-circle--v1.png" alt="Profile" />
+                          </div>
+                          <div className="blog-header-profile">
+                              <h6>{maihuna.username}</h6>
+                              <p>{maihuna.branch}, {maihuna.batch}</p>
+                          </div>
+                      </div>
+                      <div className="blog-header-right" onClick={ () => {openProfile(maihuna.username);} }>
+                          <p>Open</p>
+                      </div>
+                     </div>
+                   </div>
+              ));
+        } 
+        else{
+          return  people.map(
+                maihuna =>  (
+                       <div className="search-profiles">
+                   <div className="search-profiles-body">
+                       <div className="blog-header-left">
+                           <div className="blog-header-img">
+                               <img src="https://img.icons8.com/color/48/000000/user-male-circle--v1.png" alt="Profile" />
+                           </div>
+                           <div className="blog-header-profile">
+                               <h6>{maihuna.username}</h6>
+                               <p>{maihuna.branch}, {maihuna.batch}</p>
+                           </div>
+                       </div>
+                       <div className="blog-header-right" onClick={ () => {openProfile(maihuna.username);} }>
+                           <p>Open</p>
+                       </div>
+                      </div>
+                    </div>
+               )); 
+            }     
     }
     return ( 
         <>
@@ -47,26 +107,8 @@ const People = () => {
                 </form>
             </div>
             <>
-          {
-          people.map(
-             maihuna =>  (
-                    <div className="search-profiles">
-                <div className="search-profiles-body">
-                    <div className="blog-header-left">
-                        <div className="blog-header-img">
-                            <img src="https://img.icons8.com/color/48/000000/user-male-circle--v1.png" alt="Profile" />
-                        </div>
-                        <div className="blog-header-profile">
-                            <h6>{maihuna.username}</h6>
-                            <p>{maihuna.branch}, {maihuna.batch}</p>
-                        </div>
-                    </div>
-                    <div className="blog-header-right" onClick={ () => {openProfile(maihuna.username);} }>
-                        <p>Open</p>
-                    </div>
-                   </div>
-                 </div>
-            ))}
+          {renderPeople()}  
+          
             </>
             {/* <div className="search-profiles">
                 <div className="search-profiles-body">
