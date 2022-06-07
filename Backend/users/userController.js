@@ -72,7 +72,7 @@ router.post("/login", async (req, res)=>{
 });
 
  router.get("/posts", async (req, res)=>{
-     await db.query("SELECT * FROM posts JOIN users ON posts.username = users.username ORDER BY posts._date DESC", (err, resp) =>{
+     await db.query("SELECT * FROM posts JOIN users ON posts.username = users.username WHERE posts.deleted = 0 ORDER BY posts._date DESC", (err, resp) =>{
         if(err) throw err; 
         res.status(200).json(resp);
      });
